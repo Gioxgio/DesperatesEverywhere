@@ -23,6 +23,11 @@ impl SearchParams {
     }
 }
 
+#[api_operation(summary = "Returns `pong` if everything is ok")]
+pub async fn ping() -> impl Responder {
+    Json("pong")
+}
+
 #[api_operation(summary = "Returns a list of places that match a given string")]
 pub async fn get_places(search_params: Query<SearchParams>) -> impl Responder {
     let name = search_params.into_inner().get_name();

@@ -14,6 +14,7 @@ async fn main() -> Result<(), impl Error> {
         App::new()
             .wrap(Logger::default())
             .document(openapi::get_documentation())
+            .service(resource("/ping").route(get().to(api::ping)))
             .service(scope("/places").service(resource("").route(get().to(api::get_places))))
             .build_with(
                 &openapi::get_json_path(),
