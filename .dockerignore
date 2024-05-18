@@ -1,0 +1,11 @@
+target/
+
+.dockerignore
+.env
+.git
+.gitignore
+
+Cargo.lock
+docker-compose.yml
+dockerfile
+README.md
