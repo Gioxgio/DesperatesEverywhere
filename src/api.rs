@@ -5,6 +5,8 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
+use crate::geonames::search_place;
+
 #[derive(Serialize, JsonSchema, ApiComponent)]
 struct Place {
     pub id: Uuid,
@@ -31,6 +33,7 @@ pub async fn ping() -> impl Responder {
 #[api_operation(summary = "Returns a list of places that match a given string")]
 pub async fn get_places(search_params: Query<SearchParams>) -> impl Responder {
     let name = search_params.into_inner().get_name();
+    search_place(&name.clone()).await;
     Json(Place {
         id: Uuid::new_v4(),
         name,

@@ -6,6 +6,8 @@ use std::error::Error;
 use std::net::Ipv4Addr;
 
 mod api;
+mod config;
+mod geonames;
 mod openapi;
 
 #[actix_web::main]
